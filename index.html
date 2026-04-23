@@ -379,13 +379,13 @@
     }
 
     .gallery-masonry {
-      columns: 3;
-      column-gap: 1.25rem;
+      columns: 5;
+      column-gap: 0.9rem;
     }
 
     .artwork-item {
       break-inside: avoid;
-      margin-bottom: 1.25rem;
+      margin-bottom: 0.9rem;
       position: relative;
       overflow: hidden;
       cursor: pointer;
@@ -406,8 +406,8 @@
     .artwork-caption {
       position: absolute;
       bottom: 0; left: 0; right: 0;
-      padding: 3rem 1.5rem 1.5rem;
-      background: linear-gradient(transparent, rgba(0,0,0,0.6));
+      padding: 2rem 1rem 1rem;
+      background: linear-gradient(transparent, rgba(0,0,0,0.65));
       opacity: 0;
       transform: translateY(6px);
       transition: opacity 0.4s ease, transform 0.4s ease;
@@ -421,18 +421,33 @@
     .artwork-name {
       font-family: var(--serif);
       font-style: italic;
-      font-size: 1.1rem;
+      font-size: 0.9rem;
       color: #fff;
       font-weight: 400;
     }
 
     .artwork-medium {
-      font-size: 0.58rem;
-      letter-spacing: 0.2em;
+      font-size: 0.52rem;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: rgba(255,255,255,0.55);
-      margin-top: 0.25rem;
+      margin-top: 0.2rem;
       font-family: var(--sans);
+    }
+
+    .sold-badge {
+      position: absolute;
+      top: 0.7rem;
+      left: 0.7rem;
+      font-family: var(--sans);
+      font-size: 0.5rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-weight: 400;
+      color: var(--bg);
+      background: var(--ink);
+      padding: 0.3rem 0.65rem;
+      z-index: 2;
     }
 
     /* ─── ABOUT ─── */
@@ -1133,7 +1148,7 @@
     <div class="gallery-masonry">
 
       <div class="artwork-item reveal" onclick="openLb('img/SINGE/SINGE 1.jpeg','Singe I','Encre de Chine sur papier · Original')">
-        <img src="img/SINGE/SINGE 1.jpeg" alt="Singe I — Kai Krill" loading="lazy">
+        <div class="sold-badge">Vendu</div><img src="img/SINGE/SINGE 1.jpeg" alt="Singe I — Kai Krill" loading="lazy">
         <div class="artwork-caption">
           <div class="artwork-name">Singe I</div>
           <div class="artwork-medium">Encre de Chine · Original</div>
@@ -1141,7 +1156,7 @@
       </div>
 
       <div class="artwork-item reveal reveal-delay-1" onclick="openLb('img/SINGE/SINGE - BOB.jpeg','Bob','Encre de Chine sur papier · Original')">
-        <img src="img/SINGE/SINGE - BOB.jpeg" alt="Bob — Kai Krill" loading="lazy">
+        <div class="sold-badge">Vendu</div><img src="img/SINGE/SINGE - BOB.jpeg" alt="Bob — Kai Krill" loading="lazy">
         <div class="artwork-caption">
           <div class="artwork-name">Bob</div>
           <div class="artwork-medium">Encre de Chine · Original</div>
@@ -1149,7 +1164,7 @@
       </div>
 
       <div class="artwork-item reveal reveal-delay-2" onclick="openLb('img/SINGE/SINGE 7.jpeg','Singe VII','Encre de Chine sur papier · Original')">
-        <img src="img/SINGE/SINGE 7.jpeg" alt="Singe VII — Kai Krill" loading="lazy">
+        <div class="sold-badge">Vendu</div><img src="img/SINGE/SINGE 7.jpeg" alt="Singe VII — Kai Krill" loading="lazy">
         <div class="artwork-caption">
           <div class="artwork-name">Singe VII</div>
           <div class="artwork-medium">Encre de Chine · Original</div>
@@ -1157,7 +1172,7 @@
       </div>
 
       <div class="artwork-item reveal" onclick="openLb('img/SINGE/SINGE - 16.jpeg','Singe XVI','Encre de Chine sur papier · Original')">
-        <img src="img/SINGE/SINGE - 16.jpeg" alt="Singe XVI — Kai Krill" loading="lazy">
+        <div class="sold-badge">Vendu</div><img src="img/SINGE/SINGE - 16.jpeg" alt="Singe XVI — Kai Krill" loading="lazy">
         <div class="artwork-caption">
           <div class="artwork-name">Singe XVI</div>
           <div class="artwork-medium">Encre de Chine · Original</div>
@@ -1165,7 +1180,7 @@
       </div>
 
       <div class="artwork-item reveal reveal-delay-1" onclick="openLb('img/SINGE/SINGE - TUTU.jpeg','Tutu','Encre de Chine sur papier · Original')">
-        <img src="img/SINGE/SINGE - TUTU.jpeg" alt="Tutu — Kai Krill" loading="lazy">
+        <div class="sold-badge">Vendu</div><img src="img/SINGE/SINGE - TUTU.jpeg" alt="Tutu — Kai Krill" loading="lazy">
         <div class="artwork-caption">
           <div class="artwork-name">Tutu</div>
           <div class="artwork-medium">Encre de Chine · Original</div>
@@ -1173,7 +1188,7 @@
       </div>
 
       <div class="artwork-item reveal reveal-delay-2" onclick="openLb('img/SINGE/SINGE 2.jpeg','Singe II','Encre de Chine sur papier · Original')">
-        <img src="img/SINGE/SINGE 2.jpeg" alt="Singe II — Kai Krill" loading="lazy">
+        <div class="sold-badge">Vendu</div><img src="img/SINGE/SINGE 2.jpeg" alt="Singe II — Kai Krill" loading="lazy">
         <div class="artwork-caption">
           <div class="artwork-name">Singe II</div>
           <div class="artwork-medium">Encre de Chine · Original</div>
@@ -1181,7 +1196,7 @@
       </div>
 
       <div class="artwork-item reveal" onclick="openLb('img/SINGE/SINGE 3.jpeg','Singe III','Encre de Chine sur papier · Original')">
-        <img src="img/SINGE/SINGE 3.jpeg" alt="Singe III — Kai Krill" loading="lazy">
+        <div class="sold-badge">Vendu</div><img src="img/SINGE/SINGE 3.jpeg" alt="Singe III — Kai Krill" loading="lazy">
         <div class="artwork-caption">
           <div class="artwork-name">Singe III</div>
           <div class="artwork-medium">Encre de Chine · Original</div>
@@ -1189,7 +1204,7 @@
       </div>
 
       <div class="artwork-item reveal reveal-delay-1" onclick="openLb('img/SINGE/SINGE 8.jpeg','Singe VIII','Encre de Chine sur papier · Original')">
-        <img src="img/SINGE/SINGE 8.jpeg" alt="Singe VIII — Kai Krill" loading="lazy">
+        <div class="sold-badge">Vendu</div><img src="img/SINGE/SINGE 8.jpeg" alt="Singe VIII — Kai Krill" loading="lazy">
         <div class="artwork-caption">
           <div class="artwork-name">Singe VIII</div>
           <div class="artwork-medium">Encre de Chine · Original</div>
@@ -1197,7 +1212,7 @@
       </div>
 
       <div class="artwork-item reveal reveal-delay-2" onclick="openLb('img/SINGE/SINGE.jpeg','Singe','Encre de Chine sur papier · Original')">
-        <img src="img/SINGE/SINGE.jpeg" alt="Singe — Kai Krill" loading="lazy">
+        <div class="sold-badge">Vendu</div><img src="img/SINGE/SINGE.jpeg" alt="Singe — Kai Krill" loading="lazy">
         <div class="artwork-caption">
           <div class="artwork-name">Singe</div>
           <div class="artwork-medium">Encre de Chine · Original</div>
@@ -1205,7 +1220,7 @@
       </div>
 
       <div class="artwork-item reveal" onclick="openLb('img/SINGE/SINGE 9.jpeg','Singe IX','Encre de Chine sur papier · Original')">
-        <img src="img/SINGE/SINGE 9.jpeg" alt="Singe IX — Kai Krill" loading="lazy">
+        <div class="sold-badge">Vendu</div><img src="img/SINGE/SINGE 9.jpeg" alt="Singe IX — Kai Krill" loading="lazy">
         <div class="artwork-caption">
           <div class="artwork-name">Singe IX</div>
           <div class="artwork-medium">Encre de Chine · Original</div>
@@ -1213,7 +1228,7 @@
       </div>
 
       <div class="artwork-item reveal reveal-delay-1" onclick="openLb('img/SINGE/SINGE 10.jpeg','Singe X','Encre de Chine sur papier · Original')">
-        <img src="img/SINGE/SINGE 10.jpeg" alt="Singe X — Kai Krill" loading="lazy">
+        <div class="sold-badge">Vendu</div><img src="img/SINGE/SINGE 10.jpeg" alt="Singe X — Kai Krill" loading="lazy">
         <div class="artwork-caption">
           <div class="artwork-name">Singe X</div>
           <div class="artwork-medium">Encre de Chine · Original</div>
@@ -1221,7 +1236,7 @@
       </div>
 
       <div class="artwork-item reveal reveal-delay-2" onclick="openLb('img/SINGE/SINGE 12.jpeg','Singe XII','Encre de Chine sur papier · Original')">
-        <img src="img/SINGE/SINGE 12.jpeg" alt="Singe XII — Kai Krill" loading="lazy">
+        <div class="sold-badge">Vendu</div><img src="img/SINGE/SINGE 12.jpeg" alt="Singe XII — Kai Krill" loading="lazy">
         <div class="artwork-caption">
           <div class="artwork-name">Singe XII</div>
           <div class="artwork-medium">Encre de Chine · Original</div>
@@ -1229,7 +1244,7 @@
       </div>
 
       <div class="artwork-item reveal" onclick="openLb('img/SINGE/SINGE 13.jpeg','Singe XIII','Encre de Chine sur papier · Original')">
-        <img src="img/SINGE/SINGE 13.jpeg" alt="Singe XIII — Kai Krill" loading="lazy">
+        <div class="sold-badge">Vendu</div><img src="img/SINGE/SINGE 13.jpeg" alt="Singe XIII — Kai Krill" loading="lazy">
         <div class="artwork-caption">
           <div class="artwork-name">Singe XIII</div>
           <div class="artwork-medium">Encre de Chine · Original</div>
@@ -1237,7 +1252,7 @@
       </div>
 
       <div class="artwork-item reveal reveal-delay-1" onclick="openLb('img/SINGE/SINGE - 14.jpeg','Singe XIV','Encre de Chine sur papier · Original')">
-        <img src="img/SINGE/SINGE - 14.jpeg" alt="Singe XIV — Kai Krill" loading="lazy">
+        <div class="sold-badge">Vendu</div><img src="img/SINGE/SINGE - 14.jpeg" alt="Singe XIV — Kai Krill" loading="lazy">
         <div class="artwork-caption">
           <div class="artwork-name">Singe XIV</div>
           <div class="artwork-medium">Encre de Chine · Original</div>
@@ -1245,7 +1260,7 @@
       </div>
 
       <div class="artwork-item reveal reveal-delay-2" onclick="openLb('img/SINGE/SINGE - 15.jpeg','Singe XV','Encre de Chine sur papier · Original')">
-        <img src="img/SINGE/SINGE - 15.jpeg" alt="Singe XV — Kai Krill" loading="lazy">
+        <div class="sold-badge">Vendu</div><img src="img/SINGE/SINGE - 15.jpeg" alt="Singe XV — Kai Krill" loading="lazy">
         <div class="artwork-caption">
           <div class="artwork-name">Singe XV</div>
           <div class="artwork-medium">Encre de Chine · Original</div>
@@ -1253,7 +1268,7 @@
       </div>
 
       <div class="artwork-item reveal" onclick="openLb('img/SINGE/SINGE - 17.jpeg','Singe XVII','Encre de Chine sur papier · Original')">
-        <img src="img/SINGE/SINGE - 17.jpeg" alt="Singe XVII — Kai Krill" loading="lazy">
+        <div class="sold-badge">Vendu</div><img src="img/SINGE/SINGE - 17.jpeg" alt="Singe XVII — Kai Krill" loading="lazy">
         <div class="artwork-caption">
           <div class="artwork-name">Singe XVII</div>
           <div class="artwork-medium">Encre de Chine · Original</div>
@@ -1261,7 +1276,7 @@
       </div>
 
       <div class="artwork-item reveal reveal-delay-1" onclick="openLb('img/SINGE/SINGE - 18.jpeg','Singe XVIII','Encre de Chine sur papier · Original')">
-        <img src="img/SINGE/SINGE - 18.jpeg" alt="Singe XVIII — Kai Krill" loading="lazy">
+        <div class="sold-badge">Vendu</div><img src="img/SINGE/SINGE - 18.jpeg" alt="Singe XVIII — Kai Krill" loading="lazy">
         <div class="artwork-caption">
           <div class="artwork-name">Singe XVIII</div>
           <div class="artwork-medium">Encre de Chine · Original</div>
@@ -1269,7 +1284,7 @@
       </div>
 
       <div class="artwork-item reveal reveal-delay-2" onclick="openLb('img/SINGE/SINGE - 19.jpeg','Singe XIX','Encre de Chine sur papier · Original')">
-        <img src="img/SINGE/SINGE - 19.jpeg" alt="Singe XIX — Kai Krill" loading="lazy">
+        <div class="sold-badge">Vendu</div><img src="img/SINGE/SINGE - 19.jpeg" alt="Singe XIX — Kai Krill" loading="lazy">
         <div class="artwork-caption">
           <div class="artwork-name">Singe XIX</div>
           <div class="artwork-medium">Encre de Chine · Original</div>
@@ -1277,7 +1292,7 @@
       </div>
 
       <div class="artwork-item reveal" onclick="openLb('img/SINGE/SINGE - 20.jpeg','Singe XX','Encre de Chine sur papier · Original')">
-        <img src="img/SINGE/SINGE - 20.jpeg" alt="Singe XX — Kai Krill" loading="lazy">
+        <div class="sold-badge">Vendu</div><img src="img/SINGE/SINGE - 20.jpeg" alt="Singe XX — Kai Krill" loading="lazy">
         <div class="artwork-caption">
           <div class="artwork-name">Singe XX</div>
           <div class="artwork-medium">Encre de Chine · Original</div>
@@ -1285,7 +1300,7 @@
       </div>
 
       <div class="artwork-item reveal reveal-delay-1" onclick="openLb('img/SINGE/SINGE - 21.jpeg','Singe XXI','Encre de Chine sur papier · Original')">
-        <img src="img/SINGE/SINGE - 21.jpeg" alt="Singe XXI — Kai Krill" loading="lazy">
+        <div class="sold-badge">Vendu</div><img src="img/SINGE/SINGE - 21.jpeg" alt="Singe XXI — Kai Krill" loading="lazy">
         <div class="artwork-caption">
           <div class="artwork-name">Singe XXI</div>
           <div class="artwork-medium">Encre de Chine · Original</div>
