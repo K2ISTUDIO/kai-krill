@@ -7,7 +7,11 @@
 <meta name="description" content="Kai Krill — artiste contemporain, Paris. Encre de Chine brut. Collection Singe et Humain. 70% des ventes reversés à l'AIDE Fédération — ONU." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,200..900,0..100;1,9..144,200..900,0..100&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="img/kai-homepage.jpg">
+<!-- Fonts non-bloquants : instances exactes uniquement (pas de plages variables) -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,144,300;1,144,300&family=Inter+Tight:wght@400;500&family=JetBrains+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,144,300;1,144,300&family=Inter+Tight:wght@400;500&family=JetBrains+Mono:wght@400&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,144,300;1,144,300&family=Inter+Tight:wght@400;500&family=JetBrains+Mono:wght@400&display=swap"></noscript>
 <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -15,7 +19,10 @@
 <!-- ── TOP BAR ── -->
 <header class="topbar">
   <div class="container topbar-inner">
-    <a href="#hero" class="brand">Kai <em>Krill</em></a>
+    <a href="#hero" class="brand" aria-label="Kai Krill — Accueil">
+      <span class="brand-name">Kai Krill</span>
+      <span class="brand-sub">Paris · Encre de Chine</span>
+    </a>
     <nav class="nav">
       <a href="#collection" data-i18n="navCollection">Collection</a>
       <a href="#humain"     data-i18n="navHumain">Humain</a>
@@ -57,7 +64,7 @@
         </div>
       </div>
       <figure class="hero-img">
-        <img id="hero-image" alt="Kai Krill devant sa collection" />
+        <img id="hero-image" alt="Kai Krill devant sa collection" fetchpriority="high" decoding="sync" />
         <span class="tag" data-i18n="heroTag">Atelier · Paris 2024</span>
       </figure>
     </div>
@@ -101,7 +108,7 @@
         <a href="#contact" class="notify-btn"><span data-i18n="humainNotify">Être prévenu·e de la sortie</span> →</a>
       </div>
       <div class="humain-right">
-        <img id="humain-image" alt="" />
+        <img id="humain-image" alt="" decoding="async" />
         <div class="overlay">H</div>
         <span class="corner">II / 2025 —</span>
       </div>
@@ -126,7 +133,7 @@
     </div>
     <div class="about-grid">
       <figure class="about-img">
-        <img id="about-image" alt="Kai Krill dans son atelier" />
+        <img id="about-image" alt="Kai Krill dans son atelier" decoding="async" />
       </figure>
       <div class="about-body">
         <p data-i18n="aboutP1">Né au Vietnam, orphelin, arrivé en France en bas âge. Élevé par plusieurs familles aux traditions plurielles — ivoirienne, musulmane, bouddhiste, chrétienne — Kai Krill a forgé sa vision à l'intersection de toutes les humanités.</p>
@@ -257,7 +264,11 @@
 <!-- ── FOOTER ── -->
 <footer class="container">
   <div class="foot-top">
-    <div class="foot-mark">Kai <em>Krill</em></div>
+    <div class="foot-mark">
+      <span class="foot-mark-name">Kai Krill</span>
+      <span class="foot-mark-rule"></span>
+      <span class="foot-mark-tagline">Artiste Contemporain · Paris · Encre de Chine</span>
+    </div>
     <div class="foot-meta">
       <span>Paris · FR</span>
       <span>studio@kai-krill.com</span>
