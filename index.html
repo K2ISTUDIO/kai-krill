@@ -379,28 +379,41 @@
     }
 
     .gallery-masonry {
-      columns: 5;
-      column-gap: 0.9rem;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0.9rem;
     }
 
     .artwork-item {
-      break-inside: avoid;
-      margin-bottom: 0.9rem;
       position: relative;
       overflow: hidden;
       cursor: pointer;
       background: #f5f3ef;
+      aspect-ratio: 3 / 4;
     }
 
     .artwork-item img {
       width: 100%;
-      height: auto;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
       display: block;
       transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+      -webkit-user-drag: none;
+      user-select: none;
+      -webkit-user-select: none;
     }
 
     .artwork-item:hover img {
       transform: scale(1.04);
+    }
+
+    .img-shield {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: transparent;
     }
 
     .artwork-caption {
@@ -447,8 +460,10 @@
       color: var(--bg);
       background: var(--ink);
       padding: 0.3rem 0.65rem;
-      z-index: 2;
+      z-index: 3;
     }
+
+    .artwork-caption { z-index: 3; }
 
     /* ─── ABOUT ─── */
     #about {
@@ -1008,7 +1023,7 @@
 
     /* ─── RESPONSIVE ─── */
     @media (max-width: 1024px) {
-      .gallery-masonry { columns: 2; }
+      .gallery-masonry { grid-template-columns: repeat(3, 1fr); }
       #about { grid-template-columns: 1fr; gap: 5rem; }
       .about-visual { padding-right: 0; }
       .about-img-secondary { display: none; }
@@ -1052,7 +1067,7 @@
       }
 
       #collection { padding: 1.5rem 1.5rem 4rem; }
-      .gallery-masonry { columns: 2; column-gap: 0.75rem; }
+      .gallery-masonry { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
       .artwork-item { margin-bottom: 0.75rem; }
 
       #about, #engagement, #contact { padding: 5rem 1.5rem; }
@@ -1527,6 +1542,20 @@
 
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') closeLb();
+    });
+
+    // ─── IMAGE PROTECTION ───
+    document.addEventListener('contextmenu', e => {
+      if (e.target.tagName === 'IMG') e.preventDefault();
+    });
+    document.addEventListener('dragstart', e => {
+      if (e.target.tagName === 'IMG') e.preventDefault();
+    });
+    // Inject shield overlay on every gallery image
+    document.querySelectorAll('.artwork-item img').forEach(img => {
+      const shield = document.createElement('div');
+      shield.className = 'img-shield';
+      img.after(shield);
     });
 
     // ─── CONTACT FORM ───
