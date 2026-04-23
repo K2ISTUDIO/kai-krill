@@ -1,0 +1,1538 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kai Krill — Artiste Contemporain</title>
+  <meta name="description" content="Kai Krill, artiste contemporain. Œuvres à l'encre de Chine brut. Collection Singe. Art engagé — 70% des fonds reversés à l'AIDE Fédération.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0a;
+      --surface: #131313;
+      --surface-2: #1a1a1a;
+      --border: rgba(255,255,255,0.07);
+      --border-strong: rgba(255,255,255,0.14);
+      --ink: #f2ede6;
+      --ink-muted: rgba(242,237,230,0.45);
+      --ink-dim: rgba(242,237,230,0.22);
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'Outfit', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-weight: 300;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ─── SCROLLBAR ─── */
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border-strong); }
+
+    /* ─── UTILITIES ─── */
+    .label {
+      font-size: 0.6rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      font-family: var(--sans);
+      font-weight: 400;
+    }
+
+    /* ─── NAVIGATION ─── */
+    #nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 90;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 3rem;
+      transition: background 0.5s ease, border-bottom 0.5s ease, backdrop-filter 0.5s;
+    }
+
+    #nav.solid {
+      background: rgba(10,10,10,0.92);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .nav-logo img {
+      height: 32px;
+      filter: invert(1);
+      opacity: 0.88;
+      display: block;
+      transition: opacity 0.3s;
+    }
+    .nav-logo:hover img { opacity: 1; }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--sans);
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      text-decoration: none;
+      transition: color 0.3s;
+      font-weight: 400;
+    }
+    .nav-links a:hover { color: var(--ink); }
+
+    .nav-cta {
+      font-family: var(--sans);
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--ink);
+      text-decoration: none;
+      padding: 0.65rem 1.6rem;
+      font-weight: 400;
+      transition: opacity 0.3s;
+    }
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100dvh;
+      display: grid;
+      grid-template-columns: 42% 58%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 4rem 5rem 3rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-eyebrow {
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.4s forwards;
+    }
+
+    .hero-title {
+      font-family: var(--serif);
+      font-size: clamp(4rem, 7vw, 6.5rem);
+      font-weight: 300;
+      line-height: 0.92;
+      letter-spacing: -0.02em;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.65s forwards;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--ink-muted);
+    }
+
+    .hero-tagline {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: var(--ink-muted);
+      max-width: 340px;
+      margin-bottom: 3.5rem;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.9s forwards;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      opacity: 0;
+      animation: fadeUp 1s ease 1.1s forwards;
+    }
+
+    .btn-primary {
+      font-family: var(--sans);
+      font-size: 0.62rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--ink);
+      text-decoration: none;
+      padding: 1rem 2.5rem;
+      font-weight: 400;
+      display: inline-block;
+      transition: opacity 0.3s, transform 0.15s;
+    }
+    .btn-primary:hover { opacity: 0.9; }
+    .btn-primary:active { transform: scale(0.98); }
+
+    .btn-ghost {
+      font-family: var(--sans);
+      font-size: 0.62rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      text-decoration: none;
+      font-weight: 400;
+      transition: color 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .btn-ghost:hover { color: var(--ink); }
+    .btn-ghost::after {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: currentColor;
+    }
+
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-image {
+      position: absolute;
+      inset: 0;
+      background: #f8f6f2;
+      overflow: hidden;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      mix-blend-mode: multiply;
+      filter: contrast(1.05);
+      opacity: 0;
+      animation: heroImageReveal 1.4s ease 0.2s forwards;
+    }
+
+    .hero-image-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, var(--bg) 0%, transparent 8%);
+      z-index: 1;
+    }
+
+    .hero-counter {
+      position: absolute;
+      bottom: 3rem;
+      right: 3rem;
+      z-index: 2;
+      text-align: right;
+      opacity: 0;
+      animation: fadeIn 1s ease 1.5s forwards;
+    }
+
+    .hero-counter-num {
+      font-family: var(--serif);
+      font-size: 3rem;
+      font-weight: 300;
+      line-height: 1;
+      color: rgba(248,246,242,0.5);
+    }
+
+    .hero-counter-label {
+      font-size: 0.55rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(248,246,242,0.35);
+      margin-top: 0.25rem;
+    }
+
+    .scroll-cue {
+      position: absolute;
+      bottom: 3rem;
+      left: 3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.75rem;
+      opacity: 0;
+      animation: fadeIn 1s ease 1.8s forwards;
+    }
+
+    .scroll-cue span {
+      font-size: 0.55rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--ink-dim);
+      writing-mode: vertical-lr;
+    }
+
+    .scroll-cue-line {
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to bottom, var(--ink-dim), transparent);
+      animation: scrollPulse 2.5s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(0.6); }
+    }
+
+    /* ─── MARQUEE ─── */
+    .marquee-band {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+      padding: 1.2rem 0;
+      background: var(--surface);
+    }
+
+    .marquee-inner {
+      display: flex;
+      gap: 0;
+      width: max-content;
+      animation: marqueeScroll 25s linear infinite;
+    }
+
+    .marquee-text {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      color: var(--ink-muted);
+      white-space: nowrap;
+      padding: 0 2rem;
+    }
+
+    .marquee-dot {
+      color: var(--border-strong);
+      padding: 0 0.5rem;
+    }
+
+    @keyframes marqueeScroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ─── SECTION INTRO (left-aligned) ─── */
+    .section-intro {
+      padding: 7rem 3rem 3rem;
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 4rem;
+      align-items: end;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .section-intro-left .label { margin-bottom: 1.5rem; display: block; }
+
+    .section-heading {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-weight: 300;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+    }
+
+    .section-heading em {
+      font-style: italic;
+      color: var(--ink-muted);
+    }
+
+    .section-intro-right {
+      padding-bottom: 0.5rem;
+    }
+
+    .section-body {
+      font-size: 0.88rem;
+      line-height: 1.9;
+      color: var(--ink-muted);
+      max-width: 480px;
+    }
+
+    /* ─── GALLERY MASONRY ─── */
+    #collection {
+      padding: 2rem 2rem 6rem;
+      max-width: 1600px;
+      margin: 0 auto;
+    }
+
+    .gallery-masonry {
+      columns: 3;
+      column-gap: 1.25rem;
+    }
+
+    .artwork-item {
+      break-inside: avoid;
+      margin-bottom: 1.25rem;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      background: #f5f3ef;
+    }
+
+    .artwork-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .artwork-item:hover img {
+      transform: scale(1.04);
+    }
+
+    .artwork-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 3rem 1.5rem 1.5rem;
+      background: linear-gradient(transparent, rgba(0,0,0,0.6));
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .artwork-item:hover .artwork-caption {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .artwork-name {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: #fff;
+      font-weight: 400;
+    }
+
+    .artwork-medium {
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      margin-top: 0.25rem;
+      font-family: var(--sans);
+    }
+
+    /* ─── ABOUT ─── */
+    #about {
+      padding: 8rem 3rem;
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 0;
+      align-items: start;
+    }
+
+    .about-visual {
+      position: relative;
+      padding-right: 5rem;
+    }
+
+    .about-img-main {
+      width: 100%;
+      background: #f5f3ef;
+      display: block;
+    }
+
+    .about-img-secondary {
+      position: absolute;
+      width: 52%;
+      bottom: -3rem;
+      right: 2rem;
+      background: #f5f3ef;
+      box-shadow: -20px 20px 60px rgba(0,0,0,0.5);
+    }
+
+    .about-content {
+      padding-top: 2rem;
+    }
+
+    .about-content .label { display: block; margin-bottom: 2rem; }
+
+    .about-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 300;
+      line-height: 1.1;
+      margin-bottom: 3rem;
+    }
+
+    .about-title em { font-style: italic; color: var(--ink-muted); }
+
+    .about-text {
+      font-size: 0.88rem;
+      line-height: 1.95;
+      color: var(--ink-muted);
+    }
+
+    .about-text p + p { margin-top: 1.4rem; }
+
+    .about-pullquote {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.45rem;
+      font-weight: 400;
+      line-height: 1.45;
+      color: var(--ink);
+      border-left: 1px solid var(--border-strong);
+      padding-left: 2rem;
+      margin: 3rem 0;
+    }
+
+    .about-credentials {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .credential {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .credential-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--ink-dim);
+      flex-shrink: 0;
+    }
+
+    .credential-text {
+      font-size: 0.78rem;
+      color: var(--ink-muted);
+      line-height: 1.5;
+    }
+
+    /* ─── HUMAIN TEASER ─── */
+    #humain {
+      margin: 6rem 2rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+      padding: 8rem 3rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+
+    .humain-bg-letter {
+      position: absolute;
+      font-family: var(--serif);
+      font-size: 28vw;
+      font-weight: 300;
+      color: rgba(255,255,255,0.025);
+      right: -2rem;
+      bottom: -2rem;
+      line-height: 1;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .humain-left .label { display: block; margin-bottom: 2.5rem; }
+
+    .humain-title {
+      font-family: var(--serif);
+      font-size: clamp(4rem, 9vw, 8rem);
+      font-weight: 300;
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+    }
+
+    .humain-right {
+      position: relative;
+      z-index: 1;
+    }
+
+    .humain-desc {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.2rem;
+      line-height: 1.65;
+      color: var(--ink-muted);
+      margin-bottom: 3rem;
+    }
+
+    .humain-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-bottom: 2.5rem;
+    }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--ink-muted);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.4; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.3); }
+    }
+
+    .btn-outline {
+      display: inline-block;
+      border: 1px solid var(--border-strong);
+      color: var(--ink);
+      text-decoration: none;
+      font-family: var(--sans);
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      font-weight: 400;
+      padding: 1rem 2.5rem;
+      transition: background 0.3s, border-color 0.3s, transform 0.15s;
+    }
+    .btn-outline:hover { background: rgba(242,237,230,0.06); border-color: var(--border-strong); }
+    .btn-outline:active { transform: scale(0.98); }
+
+    /* ─── ENGAGEMENT ─── */
+    #engagement {
+      padding: 8rem 3rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .engagement-top {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 8rem;
+      align-items: start;
+      margin-bottom: 6rem;
+      padding-bottom: 6rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .engagement-top .label { display: block; margin-bottom: 1.5rem; }
+
+    .engagement-title {
+      font-family: var(--serif);
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      font-weight: 300;
+      line-height: 1.05;
+    }
+
+    .engagement-title em { font-style: italic; color: var(--ink-muted); }
+
+    .engagement-body {
+      font-size: 0.88rem;
+      line-height: 1.95;
+      color: var(--ink-muted);
+    }
+
+    .engagement-body strong {
+      color: var(--ink);
+      font-weight: 400;
+    }
+
+    .engagement-body p + p { margin-top: 1.5rem; }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+
+    .stat-item {
+      padding: 2.5rem 3rem 2.5rem 0;
+      border-right: 1px solid var(--border);
+    }
+
+    .stat-item:last-child { border-right: none; padding-right: 0; }
+    .stat-item:not(:first-child) { padding-left: 3rem; }
+
+    .stat-number {
+      font-family: var(--serif);
+      font-size: clamp(2.5rem, 4vw, 4rem);
+      font-weight: 300;
+      line-height: 1;
+      margin-bottom: 0.75rem;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      line-height: 1.5;
+      color: var(--ink-muted);
+      font-weight: 300;
+    }
+
+    /* ─── CONTACT ─── */
+    #contact {
+      padding: 8rem 3rem;
+      border-top: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 8rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .contact-left .label { display: block; margin-bottom: 1.5rem; }
+
+    .contact-title {
+      font-family: var(--serif);
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      font-weight: 300;
+      line-height: 1.1;
+      margin-bottom: 2rem;
+    }
+
+    .contact-title em { font-style: italic; color: var(--ink-muted); }
+
+    .contact-desc {
+      font-size: 0.88rem;
+      line-height: 1.9;
+      color: var(--ink-muted);
+      margin-bottom: 3rem;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contact-info-item {
+      font-size: 0.75rem;
+      color: var(--ink-muted);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .contact-info-item::before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 1px;
+      background: var(--border-strong);
+    }
+
+    .contact-form {
+      padding-top: 0.5rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .form-group {
+      margin-bottom: 2rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-family: var(--sans);
+      font-size: 0.58rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-bottom: 0.75rem;
+      font-weight: 400;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--border);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 0.88rem;
+      font-weight: 300;
+      padding: 0.85rem 0;
+      outline: none;
+      transition: border-color 0.3s;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: var(--ink-dim);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: rgba(242,237,230,0.4);
+    }
+
+    .form-group textarea {
+      resize: none;
+      height: 110px;
+    }
+
+    .form-group select option {
+      background: #1a1a1a;
+      color: var(--ink);
+    }
+
+    .btn-submit {
+      width: 100%;
+      background: var(--ink);
+      color: var(--bg);
+      border: none;
+      font-family: var(--sans);
+      font-size: 0.62rem;
+      font-weight: 400;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      padding: 1.2rem 3rem;
+      cursor: pointer;
+      margin-top: 1rem;
+      transition: opacity 0.3s, transform 0.15s;
+    }
+    .btn-submit:hover { opacity: 0.88; }
+    .btn-submit:active { transform: scale(0.99); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-logo img {
+      height: 26px;
+      filter: invert(1);
+      opacity: 0.4;
+      display: block;
+    }
+
+    .footer-center {
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      color: var(--ink-dim);
+      text-align: center;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .footer-links a {
+      font-family: var(--sans);
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-dim);
+      text-decoration: none;
+      font-weight: 400;
+      transition: color 0.3s;
+    }
+    .footer-links a:hover { color: var(--ink-muted); }
+
+    /* ─── LIGHTBOX ─── */
+    #lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(5,5,5,0.96);
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+      backdrop-filter: blur(4px);
+    }
+
+    #lightbox.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .lb-inner {
+      max-width: min(80vw, 700px);
+      width: 100%;
+      position: relative;
+    }
+
+    .lb-close {
+      position: absolute;
+      top: -2.5rem;
+      right: 0;
+      background: none;
+      border: none;
+      color: var(--ink-muted);
+      font-family: var(--sans);
+      font-size: 0.58rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: color 0.3s;
+    }
+    .lb-close:hover { color: var(--ink); }
+
+    .lb-img-wrap {
+      background: #f5f3ef;
+      overflow: hidden;
+    }
+
+    .lb-img-wrap img {
+      width: 100%;
+      max-height: 78vh;
+      object-fit: contain;
+      display: block;
+    }
+
+    .lb-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .lb-title {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.4rem;
+      font-weight: 400;
+    }
+
+    .lb-medium {
+      font-family: var(--sans);
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-top: 0.3rem;
+    }
+
+    .lb-acquire {
+      font-family: var(--sans);
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border-strong);
+      padding-bottom: 2px;
+      transition: border-color 0.3s;
+    }
+    .lb-acquire:hover { border-color: var(--ink); }
+
+    /* ─── SCROLL REVEAL ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.in { opacity: 1; transform: translateY(0); }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.35s; }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes heroImageReveal {
+      from { opacity: 0; transform: scale(1.04); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      .gallery-masonry { columns: 2; }
+      #about { grid-template-columns: 1fr; gap: 5rem; }
+      .about-visual { padding-right: 0; }
+      .about-img-secondary { display: none; }
+      #humain { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 2rem; }
+      .engagement-top { grid-template-columns: 1fr; gap: 3rem; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stat-item { border-right: none; border-bottom: 1px solid var(--border); padding: 2rem 0; }
+      .stat-item:last-child { border-bottom: none; }
+      .stat-item:not(:first-child) { padding-left: 0; }
+      #contact { grid-template-columns: 1fr; gap: 4rem; }
+    }
+
+    @media (max-width: 768px) {
+      #nav { padding: 0 1.5rem; }
+      .nav-links, .nav-cta { display: none; }
+
+      #hero {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+        min-height: 100dvh;
+        position: relative;
+      }
+
+      .hero-right {
+        position: absolute;
+        inset: 0;
+        opacity: 0.15;
+      }
+
+      .hero-left {
+        position: relative;
+        z-index: 2;
+        padding: 7rem 1.5rem 4rem;
+        justify-content: flex-end;
+      }
+
+      .section-intro {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 5rem 1.5rem 2rem;
+      }
+
+      #collection { padding: 1.5rem 1.5rem 4rem; }
+      .gallery-masonry { columns: 2; column-gap: 0.75rem; }
+      .artwork-item { margin-bottom: 0.75rem; }
+
+      #about, #engagement, #contact { padding: 5rem 1.5rem; }
+      #humain { margin: 4rem 1.5rem; }
+
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+
+      footer {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+        padding: 2rem 1.5rem;
+      }
+
+      .humain-bg-letter { font-size: 40vw; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAVIGATION ─── -->
+  <nav id="nav">
+    <a href="#hero" class="nav-logo">
+      <img src="img/logo-kai.png" alt="Kai Krill">
+    </a>
+    <ul class="nav-links">
+      <li><a href="#collection">Collection</a></li>
+      <li><a href="#humain">Humain</a></li>
+      <li><a href="#about">L'Artiste</a></li>
+      <li><a href="#engagement">Engagement</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Contact Galerie</a>
+  </nav>
+
+  <!-- ─── HERO ─── -->
+  <section id="hero">
+    <div class="hero-left">
+      <p class="hero-eyebrow label">Artiste Contemporain — Paris</p>
+      <h1 class="hero-title">Kai<br><em>Krill</em></h1>
+      <p class="hero-tagline">L'encre comme geste primitif. Le primate comme miroir de l'humain.</p>
+      <div class="hero-actions">
+        <a href="#collection" class="btn-primary">Voir la Collection</a>
+        <a href="#about" class="btn-ghost">L'Artiste</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-image">
+        <img src="img/SINGE/SINGE - 16.jpeg" alt="Œuvre de Kai Krill — Singe XVI">
+        <div class="hero-image-overlay"></div>
+      </div>
+      <div class="hero-counter">
+        <div class="hero-counter-num">21</div>
+        <div class="hero-counter-label">Œuvres originales</div>
+      </div>
+    </div>
+    <div class="scroll-cue">
+      <div class="scroll-cue-line"></div>
+      <span>Défiler</span>
+    </div>
+  </section>
+
+  <!-- ─── MARQUEE ─── -->
+  <div class="marquee-band">
+    <div class="marquee-inner">
+      <span class="marquee-text">Collection Singe</span><span class="marquee-text marquee-dot">·</span>
+      <span class="marquee-text">Encre de Chine Brut</span><span class="marquee-text marquee-dot">·</span>
+      <span class="marquee-text">Œuvres Originales</span><span class="marquee-text marquee-dot">·</span>
+      <span class="marquee-text">Éditions Limitées</span><span class="marquee-text marquee-dot">·</span>
+      <span class="marquee-text">Art Engagé</span><span class="marquee-text marquee-dot">·</span>
+      <span class="marquee-text">AIDE Fédération — ONU</span><span class="marquee-text marquee-dot">·</span>
+      <span class="marquee-text">Collection Singe</span><span class="marquee-text marquee-dot">·</span>
+      <span class="marquee-text">Encre de Chine Brut</span><span class="marquee-text marquee-dot">·</span>
+      <span class="marquee-text">Œuvres Originales</span><span class="marquee-text marquee-dot">·</span>
+      <span class="marquee-text">Éditions Limitées</span><span class="marquee-text marquee-dot">·</span>
+      <span class="marquee-text">Art Engagé</span><span class="marquee-text marquee-dot">·</span>
+      <span class="marquee-text">AIDE Fédération — ONU</span><span class="marquee-text marquee-dot">·</span>
+    </div>
+  </div>
+
+  <!-- ─── COLLECTION SINGE ─── -->
+  <div class="section-intro reveal">
+    <div class="section-intro-left">
+      <span class="label">Collection I — 2024</span>
+      <h2 class="section-heading">Singe</h2>
+    </div>
+    <div class="section-intro-right">
+      <p class="section-body">Une série de portraits à l'encre de Chine brut. Chaque trait naît d'un geste libre, sans repentir. Le primate — choisi pour sa "brute humanité" — devient le prétexte à un miroir tendu sur notre propre condition.</p>
+    </div>
+  </div>
+
+  <section id="collection">
+    <div class="gallery-masonry">
+
+      <div class="artwork-item reveal" onclick="openLb('img/SINGE/SINGE 1.jpeg','Singe I','Encre de Chine sur papier · Original')">
+        <img src="img/SINGE/SINGE 1.jpeg" alt="Singe I — Kai Krill" loading="lazy">
+        <div class="artwork-caption">
+          <div class="artwork-name">Singe I</div>
+          <div class="artwork-medium">Encre de Chine · Original</div>
+        </div>
+      </div>
+
+      <div class="artwork-item reveal reveal-delay-1" onclick="openLb('img/SINGE/SINGE - BOB.jpeg','Bob','Encre de Chine sur papier · Original')">
+        <img src="img/SINGE/SINGE - BOB.jpeg" alt="Bob — Kai Krill" loading="lazy">
+        <div class="artwork-caption">
+          <div class="artwork-name">Bob</div>
+          <div class="artwork-medium">Encre de Chine · Original</div>
+        </div>
+      </div>
+
+      <div class="artwork-item reveal reveal-delay-2" onclick="openLb('img/SINGE/SINGE 7.jpeg','Singe VII','Encre de Chine sur papier · Original')">
+        <img src="img/SINGE/SINGE 7.jpeg" alt="Singe VII — Kai Krill" loading="lazy">
+        <div class="artwork-caption">
+          <div class="artwork-name">Singe VII</div>
+          <div class="artwork-medium">Encre de Chine · Original</div>
+        </div>
+      </div>
+
+      <div class="artwork-item reveal" onclick="openLb('img/SINGE/SINGE - 16.jpeg','Singe XVI','Encre de Chine sur papier · Original')">
+        <img src="img/SINGE/SINGE - 16.jpeg" alt="Singe XVI — Kai Krill" loading="lazy">
+        <div class="artwork-caption">
+          <div class="artwork-name">Singe XVI</div>
+          <div class="artwork-medium">Encre de Chine · Original</div>
+        </div>
+      </div>
+
+      <div class="artwork-item reveal reveal-delay-1" onclick="openLb('img/SINGE/SINGE - TUTU.jpeg','Tutu','Encre de Chine sur papier · Original')">
+        <img src="img/SINGE/SINGE - TUTU.jpeg" alt="Tutu — Kai Krill" loading="lazy">
+        <div class="artwork-caption">
+          <div class="artwork-name">Tutu</div>
+          <div class="artwork-medium">Encre de Chine · Original</div>
+        </div>
+      </div>
+
+      <div class="artwork-item reveal reveal-delay-2" onclick="openLb('img/SINGE/SINGE 2.jpeg','Singe II','Encre de Chine sur papier · Original')">
+        <img src="img/SINGE/SINGE 2.jpeg" alt="Singe II — Kai Krill" loading="lazy">
+        <div class="artwork-caption">
+          <div class="artwork-name">Singe II</div>
+          <div class="artwork-medium">Encre de Chine · Original</div>
+        </div>
+      </div>
+
+      <div class="artwork-item reveal" onclick="openLb('img/SINGE/SINGE 3.jpeg','Singe III','Encre de Chine sur papier · Original')">
+        <img src="img/SINGE/SINGE 3.jpeg" alt="Singe III — Kai Krill" loading="lazy">
+        <div class="artwork-caption">
+          <div class="artwork-name">Singe III</div>
+          <div class="artwork-medium">Encre de Chine · Original</div>
+        </div>
+      </div>
+
+      <div class="artwork-item reveal reveal-delay-1" onclick="openLb('img/SINGE/SINGE 8.jpeg','Singe VIII','Encre de Chine sur papier · Original')">
+        <img src="img/SINGE/SINGE 8.jpeg" alt="Singe VIII — Kai Krill" loading="lazy">
+        <div class="artwork-caption">
+          <div class="artwork-name">Singe VIII</div>
+          <div class="artwork-medium">Encre de Chine · Original</div>
+        </div>
+      </div>
+
+      <div class="artwork-item reveal reveal-delay-2" onclick="openLb('img/SINGE/SINGE.jpeg','Singe','Encre de Chine sur papier · Original')">
+        <img src="img/SINGE/SINGE.jpeg" alt="Singe — Kai Krill" loading="lazy">
+        <div class="artwork-caption">
+          <div class="artwork-name">Singe</div>
+          <div class="artwork-medium">Encre de Chine · Original</div>
+        </div>
+      </div>
+
+      <div class="artwork-item reveal" onclick="openLb('img/SINGE/SINGE 9.jpeg','Singe IX','Encre de Chine sur papier · Original')">
+        <img src="img/SINGE/SINGE 9.jpeg" alt="Singe IX — Kai Krill" loading="lazy">
+        <div class="artwork-caption">
+          <div class="artwork-name">Singe IX</div>
+          <div class="artwork-medium">Encre de Chine · Original</div>
+        </div>
+      </div>
+
+      <div class="artwork-item reveal reveal-delay-1" onclick="openLb('img/SINGE/SINGE 10.jpeg','Singe X','Encre de Chine sur papier · Original')">
+        <img src="img/SINGE/SINGE 10.jpeg" alt="Singe X — Kai Krill" loading="lazy">
+        <div class="artwork-caption">
+          <div class="artwork-name">Singe X</div>
+          <div class="artwork-medium">Encre de Chine · Original</div>
+        </div>
+      </div>
+
+      <div class="artwork-item reveal reveal-delay-2" onclick="openLb('img/SINGE/SINGE 12.jpeg','Singe XII','Encre de Chine sur papier · Original')">
+        <img src="img/SINGE/SINGE 12.jpeg" alt="Singe XII — Kai Krill" loading="lazy">
+        <div class="artwork-caption">
+          <div class="artwork-name">Singe XII</div>
+          <div class="artwork-medium">Encre de Chine · Original</div>
+        </div>
+      </div>
+
+      <div class="artwork-item reveal" onclick="openLb('img/SINGE/SINGE 13.jpeg','Singe XIII','Encre de Chine sur papier · Original')">
+        <img src="img/SINGE/SINGE 13.jpeg" alt="Singe XIII — Kai Krill" loading="lazy">
+        <div class="artwork-caption">
+          <div class="artwork-name">Singe XIII</div>
+          <div class="artwork-medium">Encre de Chine · Original</div>
+        </div>
+      </div>
+
+      <div class="artwork-item reveal reveal-delay-1" onclick="openLb('img/SINGE/SINGE - 14.jpeg','Singe XIV','Encre de Chine sur papier · Original')">
+        <img src="img/SINGE/SINGE - 14.jpeg" alt="Singe XIV — Kai Krill" loading="lazy">
+        <div class="artwork-caption">
+          <div class="artwork-name">Singe XIV</div>
+          <div class="artwork-medium">Encre de Chine · Original</div>
+        </div>
+      </div>
+
+      <div class="artwork-item reveal reveal-delay-2" onclick="openLb('img/SINGE/SINGE - 15.jpeg','Singe XV','Encre de Chine sur papier · Original')">
+        <img src="img/SINGE/SINGE - 15.jpeg" alt="Singe XV — Kai Krill" loading="lazy">
+        <div class="artwork-caption">
+          <div class="artwork-name">Singe XV</div>
+          <div class="artwork-medium">Encre de Chine · Original</div>
+        </div>
+      </div>
+
+      <div class="artwork-item reveal" onclick="openLb('img/SINGE/SINGE - 17.jpeg','Singe XVII','Encre de Chine sur papier · Original')">
+        <img src="img/SINGE/SINGE - 17.jpeg" alt="Singe XVII — Kai Krill" loading="lazy">
+        <div class="artwork-caption">
+          <div class="artwork-name">Singe XVII</div>
+          <div class="artwork-medium">Encre de Chine · Original</div>
+        </div>
+      </div>
+
+      <div class="artwork-item reveal reveal-delay-1" onclick="openLb('img/SINGE/SINGE - 18.jpeg','Singe XVIII','Encre de Chine sur papier · Original')">
+        <img src="img/SINGE/SINGE - 18.jpeg" alt="Singe XVIII — Kai Krill" loading="lazy">
+        <div class="artwork-caption">
+          <div class="artwork-name">Singe XVIII</div>
+          <div class="artwork-medium">Encre de Chine · Original</div>
+        </div>
+      </div>
+
+      <div class="artwork-item reveal reveal-delay-2" onclick="openLb('img/SINGE/SINGE - 19.jpeg','Singe XIX','Encre de Chine sur papier · Original')">
+        <img src="img/SINGE/SINGE - 19.jpeg" alt="Singe XIX — Kai Krill" loading="lazy">
+        <div class="artwork-caption">
+          <div class="artwork-name">Singe XIX</div>
+          <div class="artwork-medium">Encre de Chine · Original</div>
+        </div>
+      </div>
+
+      <div class="artwork-item reveal" onclick="openLb('img/SINGE/SINGE - 20.jpeg','Singe XX','Encre de Chine sur papier · Original')">
+        <img src="img/SINGE/SINGE - 20.jpeg" alt="Singe XX — Kai Krill" loading="lazy">
+        <div class="artwork-caption">
+          <div class="artwork-name">Singe XX</div>
+          <div class="artwork-medium">Encre de Chine · Original</div>
+        </div>
+      </div>
+
+      <div class="artwork-item reveal reveal-delay-1" onclick="openLb('img/SINGE/SINGE - 21.jpeg','Singe XXI','Encre de Chine sur papier · Original')">
+        <img src="img/SINGE/SINGE - 21.jpeg" alt="Singe XXI — Kai Krill" loading="lazy">
+        <div class="artwork-caption">
+          <div class="artwork-name">Singe XXI</div>
+          <div class="artwork-medium">Encre de Chine · Original</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── COLLECTION HUMAIN (teaser) ─── -->
+  <section id="humain">
+    <div class="humain-bg-letter">H</div>
+    <div class="humain-left reveal">
+      <span class="label">Collection II — En développement</span>
+      <h2 class="humain-title">Humain</h2>
+    </div>
+    <div class="humain-right reveal reveal-delay-2">
+      <div class="humain-status">
+        <div class="status-dot"></div>
+        En cours de création
+      </div>
+      <p class="humain-desc">Après le primate, l'homme. Une nouvelle série en gestation — mêmes gestes libres, même encre brute. Explorer les failles et les lumières de la condition humaine.</p>
+      <a href="#contact" class="btn-outline">Être informé de la sortie</a>
+    </div>
+  </section>
+
+  <!-- ─── À PROPOS ─── -->
+  <section id="about">
+    <div class="about-visual reveal">
+      <img src="img/SINGE/SINGE 1.jpeg" class="about-img-main" alt="Singe I — Kai Krill">
+      <img src="img/SINGE/SINGE - BOB.jpeg" class="about-img-secondary" alt="Bob — Kai Krill">
+    </div>
+    <div class="about-content reveal reveal-delay-2">
+      <span class="label">L'Artiste</span>
+      <h2 class="about-title">Une trajectoire<br><em>hors du commun</em></h2>
+      <div class="about-text">
+        <p>Né au Vietnam, orphelin, arrivé en France en bas âge. Élevé par plusieurs familles aux traditions plurielles — ivoirienne, musulmane, bouddhiste, chrétienne — Kai Krill a forgé sa vision à l'intersection de toutes les humanités.</p>
+        <blockquote class="about-pullquote">
+          "Le primate ne ment pas. Son regard porte ce que l'homme cherche à dissimuler."
+        </blockquote>
+        <p>Diplômé de l'École Boulle (MANAA) et titulaire d'un Bachelor of Arts de Middlesex University, il exerce d'abord comme Directeur Créatif chez Publicis avant de créer ses propres sociétés — qu'il revend pour se consacrer entièrement à l'art et à l'action humanitaire.</p>
+        <p>L'art revient dans sa vie par un défi : dessiner un singe à l'encre de Chine par jour, pendant 30 jours, à la demande de son fils. De ce geste naît une œuvre. De cette œuvre, une mission.</p>
+      </div>
+      <div class="about-credentials">
+        <div class="credential">
+          <div class="credential-dot"></div>
+          <span class="credential-text">École Boulle, Paris — MANAA</span>
+        </div>
+        <div class="credential">
+          <div class="credential-dot"></div>
+          <span class="credential-text">Middlesex University — Bachelor of Arts</span>
+        </div>
+        <div class="credential">
+          <div class="credential-dot"></div>
+          <span class="credential-text">Directeur Créatif — Publicis</span>
+        </div>
+        <div class="credential">
+          <div class="credential-dot"></div>
+          <span class="credential-text">Fondateur, AIDE Fédération (statut consultatif ONU)</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── ENGAGEMENT ─── -->
+  <section id="engagement">
+    <div class="engagement-top">
+      <div class="reveal">
+        <span class="label">Engagement</span>
+        <h2 class="engagement-title">L'art comme<br><em>acte politique</em></h2>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <p class="engagement-body">
+          Kai Krill reverse <strong>70 % de l'intégralité des fonds générés</strong> à l'AIDE Fédération, ONG dotée du statut consultatif auprès des Nations Unies. Chaque œuvre acquise finance directement des projets humanitaires concrets sur le terrain.
+        </p>
+        <p class="engagement-body">
+          L'esthétique et l'activisme ne s'opposent pas — ils se nourrissent l'un l'autre. Posséder une œuvre de Kai Krill, c'est participer à une action dans le monde réel.
+        </p>
+      </div>
+    </div>
+    <div class="stats-grid reveal">
+      <div class="stat-item">
+        <div class="stat-number">70%</div>
+        <div class="stat-label">des fonds reversés à l'AIDE Fédération, chaque vente</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">ONU</div>
+        <div class="stat-label">Statut consultatif de l'ONG partenaire auprès des Nations Unies</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">30j</div>
+        <div class="stat-label">Un singe par jour — le geste fondateur de toute l'œuvre</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">2</div>
+        <div class="stat-label">Collections — Singe (complète) et Humain (en développement)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CONTACT ─── -->
+  <section id="contact">
+    <div class="contact-left reveal">
+      <span class="label">Galeries & Collectionneurs</span>
+      <h2 class="contact-title">Prendre<br><em>Contact</em></h2>
+      <p class="contact-desc">Pour toute demande d'acquisition d'une œuvre originale, d'édition limitée, de proposition d'exposition ou de partenariat galerie.</p>
+      <div class="contact-info">
+        <div class="contact-info-item">Acquisitions — Originaux et éditions limitées</div>
+        <div class="contact-info-item">Propositions d'exposition — France et international</div>
+        <div class="contact-info-item">Partenariats galerie — Demande sur dossier</div>
+        <div class="contact-info-item">Presse et médias — Dossier artistique disponible</div>
+      </div>
+    </div>
+    <form class="contact-form reveal reveal-delay-2" onsubmit="submitForm(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="prenom">Prénom</label>
+          <input type="text" id="prenom" name="prenom" placeholder="Marie" autocomplete="given-name" required>
+        </div>
+        <div class="form-group">
+          <label for="nom">Nom</label>
+          <input type="text" id="nom" name="nom" placeholder="Laurent" autocomplete="family-name" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Adresse email</label>
+        <input type="email" id="email" name="email" placeholder="contact@galerie-exemple.com" autocomplete="email" required>
+      </div>
+      <div class="form-group">
+        <label for="structure">Structure / Galerie</label>
+        <input type="text" id="structure" name="structure" placeholder="Galerie du Marais, Paris">
+      </div>
+      <div class="form-group">
+        <label for="type">Nature de la demande</label>
+        <select id="type" name="type" required>
+          <option value="" disabled selected>Sélectionner...</option>
+          <option value="original">Acquisition — Œuvre originale</option>
+          <option value="edition">Acquisition — Édition limitée</option>
+          <option value="exposition">Proposition d'exposition</option>
+          <option value="galerie">Partenariat galerie</option>
+          <option value="presse">Demande presse / média</option>
+          <option value="autre">Autre</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" placeholder="Décrivez votre projet, vos références ou votre demande..." required></textarea>
+      </div>
+      <button type="submit" class="btn-submit" id="submit-btn">Envoyer la demande</button>
+    </form>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    <a href="#hero" class="footer-logo">
+      <img src="img/logo-kai.png" alt="Kai Krill">
+    </a>
+    <p class="footer-center">© 2024 Kai Krill — Tous droits réservés.<br>Œuvres produites et expédiées depuis la France.</p>
+    <div class="footer-links">
+      <a href="https://kai-krill.com" target="_blank" rel="noopener">Site officiel</a>
+      <a href="#collection">Collection</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </footer>
+
+  <!-- ─── LIGHTBOX ─── -->
+  <div id="lightbox" role="dialog" aria-modal="true" aria-label="Visualisation de l'œuvre">
+    <div class="lb-inner">
+      <button class="lb-close" onclick="closeLb()">Fermer</button>
+      <div class="lb-img-wrap">
+        <img id="lb-img" src="" alt="">
+      </div>
+      <div class="lb-meta">
+        <div>
+          <div class="lb-title" id="lb-title"></div>
+          <div class="lb-medium" id="lb-medium"></div>
+        </div>
+        <a href="#contact" class="lb-acquire" onclick="closeLb()">Demande d'acquisition</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ─── NAV SCROLL ───
+    const nav = document.getElementById('nav');
+    const onScroll = () => nav.classList.toggle('solid', window.scrollY > 60);
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // ─── SCROLL REVEAL ───
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          revealObserver.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // ─── LIGHTBOX ───
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lb-img');
+    const lbTitle = document.getElementById('lb-title');
+    const lbMedium = document.getElementById('lb-medium');
+
+    function openLb(src, title, medium) {
+      lbImg.src = src;
+      lbImg.alt = title + ' — Kai Krill';
+      lbTitle.textContent = title;
+      lbMedium.textContent = medium;
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLb() {
+      lb.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    lb.addEventListener('click', (e) => {
+      if (e.target === lb) closeLb();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLb();
+    });
+
+    // ─── CONTACT FORM ───
+    function submitForm(e) {
+      e.preventDefault();
+      const btn = document.getElementById('submit-btn');
+      btn.textContent = 'Demande envoyée';
+      btn.style.background = 'transparent';
+      btn.style.color = 'var(--ink-muted)';
+      btn.style.border = '1px solid var(--border)';
+      btn.disabled = true;
+
+      setTimeout(() => {
+        btn.textContent = 'Envoyer la demande';
+        btn.style.background = '';
+        btn.style.color = '';
+        btn.style.border = '';
+        btn.disabled = false;
+        e.target.reset();
+      }, 4000);
+    }
+  </script>
+</body>
+</html>
