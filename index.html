@@ -7,11 +7,8 @@
 <meta name="description" content="Kai Krill — artiste contemporain, Paris. Encre de Chine brut. Collection Singe et Humain. 70% des ventes reversés à l'AIDE Fédération — ONU." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="image" href="img/kai-homepage.jpg">
-<!-- Fonts non-bloquants : instances exactes uniquement (pas de plages variables) -->
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,144,300;1,144,300&family=Inter+Tight:wght@400;500&family=JetBrains+Mono:wght@400&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,144,300;1,144,300&family=Inter+Tight:wght@400;500&family=JetBrains+Mono:wght@400&display=swap" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,144,300;1,144,300&family=Inter+Tight:wght@400;500&family=JetBrains+Mono:wght@400&display=swap"></noscript>
+<link rel="preload" as="image" href="img/kai-homepage.webp" type="image/webp">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,200..900,0..100;1,9..144,200..900,0..100&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -20,14 +17,14 @@
 <header class="topbar">
   <div class="container topbar-inner">
     <a href="#hero" class="brand" aria-label="Kai Krill — Accueil">
-      <img src="img/logo-kai.png" alt="Kai Krill" class="brand-logo">
+      <img src="img/logo-kai.webp" alt="Kai Krill" />
     </a>
     <nav class="nav">
-      <a href="#collection" data-i18n="navCollection">Collection</a>
+      <a href="#collection" data-i18n="navCollection">Singe</a>
       <a href="#humain"     data-i18n="navHumain">Humain</a>
       <a href="#about"      data-i18n="navAbout">L'Artiste</a>
       <a href="#engagement" data-i18n="navEngagement">Engagement</a>
-      <a href="#press"      data-i18n="navPress">Presse</a>
+      <a href="#instagram"  data-i18n="navPress">Instagram</a>
     </nav>
     <div class="topbar-right">
       <div class="lang-toggle" role="group" aria-label="Langue">
@@ -35,26 +32,39 @@
         <button data-lang="en" aria-pressed="false">EN</button>
       </div>
       <a href="#contact" class="btn-contact" data-i18n="btnContact">Contact Galerie</a>
+      <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </div>
 </header>
+
+<!-- ── MOBILE DRAWER ── -->
+<div class="mobile-drawer" id="mobile-drawer" aria-hidden="true">
+  <a href="#collection" data-i18n="navCollection">Singe</a>
+  <a href="#humain"     data-i18n="navHumain">Humain</a>
+  <a href="#about"      data-i18n="navAbout">L'Artiste</a>
+  <a href="#engagement" data-i18n="navEngagement">Engagement</a>
+  <a href="#instagram"  data-i18n="navPress">Instagram</a>
+  <a href="#contact" class="mobile-contact" data-i18n="btnContact">Contact Galerie</a>
+</div>
 
 <!-- ── HERO ── -->
 <section id="hero" class="hero">
   <div class="container">
     <div class="hero-grid">
       <div>
-        <div class="eyebrow" data-i18n="heroEyebrow">Artiste contemporain · Paris · Depuis 2024</div>
-        <h1 style="margin-top:20px;">Kai<br/><em>Krill</em></h1>
-        <p class="hero-lead" data-i18n="heroLead">L'encre comme geste primitif. Le primate comme miroir de l'homme.</p>
+        <div class="eyebrow" data-i18n="heroEyebrow">Artiste contemporain · Paris · Depuis 2025</div>
+        <h1 style="margin-top:20px;"><span data-i18n="heroH1a">L'encre</span><br/><em id="hero-verb">révèle</em></h1>
+        <p class="hero-lead" data-i18n="heroLead">Après le primate, l'homme. La nouvelle série <em>Humain</em> — premiers regards.</p>
         <div class="hero-meta">
           <div class="item">
-            <span class="eyebrow" data-i18n="heroStat1Label">Collection I</span>
-            <strong data-i18n="heroStat1Val">Singe — complète</strong>
+            <span class="eyebrow" data-i18n="heroStat1Label">Collection II — Nouveau</span>
+            <strong data-i18n="heroStat1Val">Humain</strong>
           </div>
           <div class="item" style="text-align:center;">
-            <span class="eyebrow" data-i18n="heroStat2Label">Œuvres originales</span>
-            <strong data-i18n="heroStat2Val">21</strong>
+            <span class="eyebrow" data-i18n="heroStat2Label">Collection I</span>
+            <strong data-i18n="heroStat2Val">Singe · complète</strong>
           </div>
           <div class="item" style="text-align:right;">
             <span class="eyebrow" data-i18n="heroStat3Label">Médium</span>
@@ -63,8 +73,8 @@
         </div>
       </div>
       <figure class="hero-img">
-        <img id="hero-image" alt="Kai Krill devant sa collection" fetchpriority="high" decoding="sync" />
-        <span class="tag" data-i18n="heroTag">Atelier · Paris 2024</span>
+        <img id="hero-image" src="img/kai-homepage.webp" alt="Kai Krill devant la collection Singe · atelier" fetchpriority="high" decoding="sync" />
+        <span class="tag" data-i18n="heroTag">Atelier · Paris 2025</span>
       </figure>
     </div>
   </div>
@@ -77,41 +87,99 @@
   </div>
 </div>
 
-<!-- ── COLLECTION ── -->
-<section id="collection" class="section">
+<!-- ── HUMAIN — FEATURED ── -->
+<section id="humain" class="section humain-section">
   <div class="container">
     <div class="section-head">
       <div>
-        <div class="eyebrow" data-i18n="collectionEyebrow">Collection I — 2024</div>
-        <h2 style="margin-top:16px;" data-i18n="collectionTitle">Singe</h2>
+        <div class="eyebrow" data-i18n="humainEyebrow">Collection II — À venir</div>
+        <h2 style="margin-top:16px;" data-i18n="humainTitle">Humain</h2>
       </div>
       <div class="meta">
-        <p data-i18n="collectionMeta">Une série de 21 portraits à l'encre de Chine brut. Chaque trait naît d'un geste libre, sans repentir. Le primate — choisi pour sa « brute humanité » — devient le prétexte à un miroir tendu sur notre propre condition.</p>
+        <p data-i18n="humainLeadNew">Après le primate, l'homme. Une nouvelle série à l'encre — regards qui portent ce que le verbe ne dit pas. Les premières œuvres viennent d'éclore.</p>
       </div>
     </div>
   </div>
-  <div class="container" style="padding-left:0;padding-right:0;">
-    <div class="catalog" id="catalog"></div>
+
+  <div class="humain-feature">
+    <figure class="humain-feature-img">
+      <img src="img/HUMAIN/Human 1.webp" alt="Humain I — Kai Krill, encre sur papier" />
+    </figure>
+    <aside class="humain-feature-side">
+      <div class="eyebrow">№ 01 — Humain</div>
+      <h3 class="humain-feature-title">Humain <em>I</em></h3>
+      <div class="humain-feature-meta">
+        <div><div class="lbl" data-i18n="lblMedium">Médium</div><div class="val">Encre &amp; graphite sur papier</div></div>
+        <div><div class="lbl" data-i18n="lblFormat">Format</div><div class="val">Encadré sous cadre noir</div></div>
+        <div><div class="lbl" data-i18n="lblYear">Année</div><div class="val">2026</div></div>
+        <div><div class="lbl" data-i18n="lblStatus">Statut</div><div class="val" data-i18n="statusAvailable">À venir — 2026</div></div>
+      </div>
+      <p class="humain-feature-desc" data-i18n="humainDesc">Une figure qui émerge du geste, portrait à la fois brut et tendu. Le trait refuse la ligne propre — il cherche la vérité du regard.</p>
+      <div class="humain-feature-actions">
+        <a href="#contact" class="btn-primary" data-i18n="humainEnquire">Être prévenu·e de la sortie</a>
+        <button class="btn-ghost" onclick="openHumain()" data-i18n="humainView">Voir l'œuvre</button>
+      </div>
+      <div class="humain-feature-dots">
+        <span class="dot pulse"></span>
+        <span data-i18n="humainSerieStatus">Série à venir · premières œuvres en atelier</span>
+      </div>
+    </aside>
+  </div>
+
+  <!-- ORIGINE DES VISAGES -->
+  <div class="container">
+    <div class="humain-origin">
+      <div class="humain-origin-eyebrow eyebrow" data-i18n="originEyebrow">Origine des visages</div>
+      <div class="humain-origin-grid">
+        <div class="humain-origin-text">
+          <p>
+            <span data-i18n="originLead1">Chaque visage de la collection</span>
+            <em data-i18n="originLeadEm"> Humain </em>
+            <span data-i18n="originLead2">est issu d'une mission humanitaire. Les regards sont portés, les traits vus. L'encre ne s'invente pas — elle se rapporte.</span>
+          </p>
+        </div>
+        <aside class="humain-origin-missions">
+          <div class="mission-item mission-upcoming">
+            <div class="mission-date">
+              <span class="mission-month" data-i18n="missionAprMonth">Avril</span>
+              <span class="mission-year">2026</span>
+            </div>
+            <div class="mission-body">
+              <div class="mission-loc">Mayotte</div>
+              <div class="mission-desc" data-i18n="missionMayotteDesc">De nombreux visages seront réalisés sur place, au plus près des communautés rencontrées.</div>
+              <div class="mission-tag"><span class="dot pulse"></span><span data-i18n="missionUpcoming">Prochaine mission</span></div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- ── HUMAIN — TEASER ── -->
-<section id="humain" class="section" style="padding-top:0;border-top:0;">
-  <div class="container" style="padding-left:0;padding-right:0;">
-    <div class="humain">
-      <div class="humain-left">
-        <div class="eyebrow" data-i18n="humainEyebrow">Collection II · En gestation</div>
-        <h3 data-i18n="humainTitle">Humain</h3>
-        <div class="status-line"><span class="pulse"></span><span data-i18n="humainStatus">En cours de création</span></div>
-        <p data-i18n="humainLead">Après le primate, l'homme. Une nouvelle série en gestation — mêmes gestes libres, même encre brute. Explorer les failles et les lumières de la condition humaine.</p>
-        <a href="#contact" class="notify-btn"><span data-i18n="humainNotify">Être prévenu·e de la sortie</span> →</a>
+<!-- ── SINGE — CAROUSEL ── -->
+<section id="collection" class="section singe-section">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow" data-i18n="collectionEyebrow">Collection I — 2025 · Complète</div>
+        <h2 style="margin-top:16px;" data-i18n="collectionTitle">Singe</h2>
       </div>
-      <div class="humain-right">
-        <img id="humain-image" alt="" decoding="async" />
-        <div class="overlay">H</div>
-        <span class="corner">II / 2025 —</span>
+      <div class="meta">
+        <p data-i18n="collectionMeta">La série fondatrice. 21 portraits à l'encre de Chine, gestes libres, sans repentir. Le primate comme miroir tendu sur notre condition.</p>
       </div>
     </div>
+  </div>
+
+  <div class="singe-carousel" id="singe-carousel" aria-label="Collection Singe">
+    <div class="singe-track" id="singe-track"></div>
+    <div class="singe-controls">
+      <button class="singe-btn" id="singe-prev" aria-label="Précédent">←</button>
+      <button class="singe-btn" id="singe-next" aria-label="Suivant">→</button>
+    </div>
+  </div>
+  <div class="container singe-foot">
+    <span class="eyebrow"><span data-i18n="singeFootCount">21 œuvres — intégralement vendues</span></span>
+    <a href="#contact" class="inline-link" data-i18n="singeFootLink">Rejoindre la liste des collectionneurs →</a>
   </div>
 </section>
 
@@ -132,7 +200,7 @@
     </div>
     <div class="about-grid">
       <figure class="about-img">
-        <img id="about-image" alt="Kai Krill dans son atelier" decoding="async" />
+        <img id="about-image" src="img/back-profil.webp" alt="Kai Krill dans son atelier" decoding="async" />
       </figure>
       <div class="about-body">
         <p data-i18n="aboutP1">Né au Vietnam, orphelin, arrivé en France en bas âge. Élevé par plusieurs familles aux traditions plurielles — ivoirienne, musulmane, bouddhiste, chrétienne — Kai Krill a forgé sa vision à l'intersection de toutes les humanités.</p>
@@ -152,9 +220,9 @@
 <section id="engagement" class="manifesto">
   <div class="container">
     <div class="eyebrow" data-i18n="engagementEyebrow">Engagement</div>
-    <h2>
+    <h2 class="manifesto-title">
       <span data-i18n="engagementTitle">L'art comme</span><br/>
-      <em data-i18n="engagementTitleEm">acte politique</em>
+      <span class="manifesto-em" data-i18n="engagementTitleEm">acte d'engagement</span>
     </h2>
     <div class="impact">
       <div>
@@ -171,7 +239,7 @@
       </div>
       <div>
         <div class="fig">II</div>
-        <div class="lbl" data-i18n="impact2Lbl">Collections — Singe (complète) & Humain (à venir)</div>
+        <div class="lbl" data-i18n="impact2Lbl">Collections — Singe (complète) &amp; Humain (à venir)</div>
       </div>
     </div>
     <div class="manifesto-body">
@@ -181,23 +249,12 @@
   </div>
 </section>
 
-<!-- ── BANDEAU ONG ── -->
-<div class="ong-band">
-  <img src="img/bandeau-web-ong-kaikrill.jpg" alt="Une partie des ventes soutient les actions de l'ONG AIDE Fédération — Nations Unies" />
-</div>
-
-<!-- ── PRESS ── -->
-<section id="press" class="section" style="padding-top:clamp(40px,6vw,80px);padding-bottom:clamp(40px,6vw,80px);">
+<!-- ── INSTAGRAM ── -->
+<section id="instagram" class="section ig-section">
   <div class="container">
-    <div class="press">
-      <div class="eyebrow" data-i18n="pressEyebrow">Mentions</div>
-      <div class="press-list">
-        <span>Art Press</span>
-        <span>Beaux-Arts Magazine</span>
-        <span>Le Quotidien de l'Art</span>
-        <span>Connaissance des Arts</span>
-        <span>AIDE Fédération</span>
-      </div>
+    <div class="ig-feed-embed">
+      <div data-key="Carousel Instagram Feed " class="ft" id="fttkz98iw"></div>
+      <script src="https://wdg.fouita.com/widgets/0x434208.js"></script>
     </div>
   </div>
 </section>
@@ -207,7 +264,7 @@
   <div class="container">
     <div class="contact-grid">
       <div class="contact-left">
-        <div class="eyebrow" data-i18n="contactEyebrow">Galeries & Collectionneurs</div>
+        <div class="eyebrow" data-i18n="contactEyebrow">Galeries &amp; Collectionneurs</div>
         <h2 style="margin-top:16px;">
           <span data-i18n="contactTitle">Prendre</span><br/>
           <em data-i18n="contactTitleEm">Contact</em>
@@ -215,23 +272,23 @@
         <p data-i18n="contactLead">Pour toute demande d'acquisition, proposition d'exposition ou partenariat galerie.</p>
         <ul>
           <li data-i18n="contactL1">Acquisitions — originaux et éditions limitées</li>
-          <li data-i18n="contactL2">Propositions d'exposition — France & international</li>
+          <li data-i18n="contactL2">Propositions d'exposition — France &amp; international</li>
           <li data-i18n="contactL3">Partenariats galerie — demande sur dossier</li>
-          <li data-i18n="contactL4">Presse & médias — dossier artistique disponible</li>
+          <li data-i18n="contactL4">Presse &amp; médias — dossier artistique disponible</li>
         </ul>
       </div>
-      <form class="form" onsubmit="event.preventDefault(); this.querySelector('.submit').textContent = '✓ Message envoyé'; this.querySelector('.submit').style.background='var(--accent)';">
+      <form class="form" onsubmit="event.preventDefault(); this.querySelector('.submit').textContent = '✓ Merci · Message envoyé'; this.querySelector('.submit').style.background='var(--accent)';">
         <div class="field">
           <label data-i18n="fFirstname">Prénom</label>
-          <input type="text" required autocomplete="given-name" />
+          <input type="text" required />
         </div>
         <div class="field">
           <label data-i18n="fLastname">Nom</label>
-          <input type="text" required autocomplete="family-name" />
+          <input type="text" required />
         </div>
         <div class="field">
           <label data-i18n="fEmail">Adresse email</label>
-          <input type="email" required autocomplete="email" />
+          <input type="email" required />
         </div>
         <div class="field">
           <label data-i18n="fStructure">Structure / Galerie</label>
@@ -263,24 +320,21 @@
 <!-- ── FOOTER ── -->
 <footer class="container">
   <div class="foot-top">
-    <div class="foot-mark">
-      <span class="foot-mark-name">Kai Krill</span>
-      <span class="foot-mark-rule"></span>
-      <span class="foot-mark-tagline">Artiste Contemporain · Paris · Encre de Chine</span>
-    </div>
+    <div class="foot-mark"><img src="img/logo-kai.webp" alt="Kai Krill" /></div>
     <div class="foot-meta">
       <span>Paris · FR</span>
       <span>studio@kai-krill.com</span>
+      <span>+33 (0)1 00 00 00 00</span>
     </div>
   </div>
   <div class="foot-bottom">
-    <span data-i18n="footRights">© 2024 Kai Krill — Tous droits réservés</span>
+    <span data-i18n="footRights">© 2026 Kai Krill — Tous droits réservés</span>
     <span data-i18n="footShip">Œuvres produites et expédiées depuis la France</span>
   </div>
 </footer>
 
 <!-- ── LIGHTBOX ── -->
-<div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true">
+<div class="lightbox" id="lightbox" aria-hidden="true" role="dialog">
   <div class="lb-counter" id="lb-counter">01 / 20</div>
   <button class="lb-close" id="lb-close" aria-label="Fermer">×</button>
   <div class="lb-inner">
@@ -292,7 +346,7 @@
         <div class="lb-meta">
           <div><div class="lbl">Médium</div><div class="val" id="lb-medium">Encre de Chine</div></div>
           <div><div class="lbl">Type</div><div class="val" id="lb-type">Original</div></div>
-          <div><div class="lbl">Année</div><div class="val" id="lb-year">2024</div></div>
+          <div><div class="lbl">Année</div><div class="val" id="lb-year">2025</div></div>
           <div><div class="lbl">Statut</div><div class="val" id="lb-status">Vendu</div></div>
         </div>
         <p class="lb-desc" id="lb-desc">Portrait à l'encre de Chine brut. Tirage unique, sur papier. Toute œuvre est issue de la série fondatrice « Singe » — un geste quotidien, sans repentir.</p>
@@ -323,12 +377,18 @@
     <span>Thème</span>
     <div class="tk-seg" data-tk="theme">
       <button data-v="light" aria-pressed="true">Clair</button>
-      <button data-v="dark"  aria-pressed="false">Sombre</button>
+      <button data-v="dark" aria-pressed="false">Sombre</button>
     </div>
   </div>
 </div>
 
 <script src="data.js"></script>
 <script src="app.js"></script>
+<script>
+  const tb = document.querySelector('.topbar');
+  window.addEventListener('scroll', () => {
+    tb.classList.toggle('scrolled', window.scrollY > 4);
+  }, { passive: true });
+</script>
 </body>
 </html>
